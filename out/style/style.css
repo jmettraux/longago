@@ -20,9 +20,13 @@
 }
 
 h2 {
-  font-size: 200%;
+  font-size: 290%;
   margin-top: 2em;
   margin-bottom: 2em;
+  font-family: "EB Garamond", serif;
+  font-optical-sizing: auto;
+  font-weight: 490;
+  font-style: normal;
 }
 
 p {
