@@ -1,5 +1,7 @@
 
 .vim*
 
+.todo.md
+
 out/*.html
 
