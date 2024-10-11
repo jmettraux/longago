@@ -11,9 +11,47 @@ rc = Redcarpet::Markdown.new(
 
 foot = File.read('lib/foot.html')
 
+posts = Dir['posts/*.md']
+
 puts
 
-Dir['posts/*.md'].each do |path|
+#
+# the index
+
+File.open('out/index.html', 'wb') do |f|
+
+  head =
+    File.read('lib/head.html')
+      .gsub('$TITLE', 'Igo Journey')
+
+  f.write(head)
+
+  f.write(File.read('lib/index_top.html'))
+
+  f.write("<ul>\n")
+
+  posts.each do |path|
+
+    bn = File.basename(path, '.md')
+    ti = File.read(path).match(/^## ([^\n]+)/)
+    ti = ti ? ti[1] : '(no ## title)'
+
+    f.write("<li><a href=\"#{bn}.html\">#{ti}</a></li>\n")
+  end
+
+  f.write("</ul>\n")
+
+  f.write(foot)
+end
+
+puts "  wrote #{C.green('out/index.html')}"
+
+puts
+
+#
+# the posts
+
+posts.each do |path|
 
   bn = File.basename(path, '.md')
   out = File.join('out', bn + '.html')
