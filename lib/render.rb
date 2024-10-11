@@ -1,10 +1,15 @@
 
 require 'redcarpet'
+require 'colorato'
 require 'longago/html_renderer'
+
+C = Colorato.colours
 
 rc = Redcarpet::Markdown.new(
   Longago::HtmlRenderer.new({}),
   tables: false, footnotes: false, strikethrough: false)
+
+puts
 
 Dir['posts/*.md'].each do |path|
 
@@ -22,5 +27,9 @@ Dir['posts/*.md'].each do |path|
     f.write(md)
     f.write("</body></html>\n")
   end
+
+  puts "  rendered #{C.green(out)}"
 end
+
+puts
 
