@@ -9,6 +9,8 @@ rc = Redcarpet::Markdown.new(
   Longago::HtmlRenderer.new({}),
   tables: false, footnotes: false, strikethrough: false)
 
+foot = File.read('lib/foot.html')
+
 puts
 
 Dir['posts/*.md'].each do |path|
@@ -25,7 +27,7 @@ Dir['posts/*.md'].each do |path|
   File.open(out, 'wb') do |f|
     f.write(head)
     f.write(md)
-    f.write("</body></html>\n")
+    f.write(foot)
   end
 
   puts "  rendered #{C.green(out)}"
