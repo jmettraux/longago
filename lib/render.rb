@@ -12,6 +12,10 @@ rc = Redcarpet::Markdown.new(
 foot = File.read('lib/partials/foot.html')
 
 posts = Dir['posts/*.md']
+  .sort_by { |path|
+    m = path.match(/(\d{4}-?\d{2}-?\d{2})/)
+    m ? m[1] : '9999-12-31' }
+  .reverse
 
 puts
 
