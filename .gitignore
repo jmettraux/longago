@@ -5,3 +5,6 @@
 
 out/*.html
 
+.chat.md
+.openai*
+
