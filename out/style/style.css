@@ -58,3 +58,23 @@ p:last-of-type {
   margin-bottom: 4.2em;
 }
 
+/*
+ul {
+  list-style: none;
+}
+li {
+  line-height: 1.4em;
+}
+ul li::before {
+  content: "";
+  background-image: url(../images/black_stone_small.png);
+  background-size: contain;
+  display: inline-block;
+  width: 0.7em;
+  height: 0.7em;
+  position: relative;
+  top: 0.1rem;
+  margin-right: 0.2rem;
+}
+*/
+
