@@ -9,7 +9,7 @@ rc = Redcarpet::Markdown.new(
   Longago::HtmlRenderer.new({}),
   tables: false, footnotes: false, strikethrough: false)
 
-foot = File.read('lib/foot.html')
+foot = File.read('lib/partials/foot.html')
 
 posts = Dir['posts/*.md']
 
@@ -21,12 +21,12 @@ puts
 File.open('out/index.html', 'wb') do |f|
 
   head =
-    File.read('lib/head.html')
+    File.read('lib/partials/head.html')
       .gsub('$TITLE', 'Igo Journey')
 
   f.write(head)
 
-  f.write(File.read('lib/index_top.html'))
+  f.write(File.read('lib/partials/index_top.html'))
 
   f.write("<ul>\n")
 
@@ -59,7 +59,7 @@ posts.each do |path|
   md = rc.render(File.read(path))
 
   head =
-    File.read('lib/head.html')
+    File.read('lib/partials/head.html')
       .gsub('$TITLE', bn)
 
   File.open(out, 'wb') do |f|
