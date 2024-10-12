@@ -20,8 +20,10 @@ body {
 }
 @media (max-width: 600px) {
   #content {
-    font-size: 20px;
     margin: 1em 1em;
+    /*
+    font-size: 20px;
+    */
   }
 }
 
