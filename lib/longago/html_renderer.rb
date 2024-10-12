@@ -15,6 +15,23 @@ module Longago
       @footnotes = []
     end
 
+    def header(text, level)
+
+      s = StringIO.new
+
+      s << "<h#{level}>"
+      if level == 2
+        s << "<a href=\"index.html\">"
+        s << text
+        s << "</a>"
+      else
+        s << text
+      end
+      s << "</h#{level}>"
+
+      s.string
+    end
+
     # footnotes:
     #   https://www.markdownguide.org/extended-syntax/
 

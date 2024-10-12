@@ -1,6 +1,11 @@
 
 /* style.css */
 
+a { text-decoration: none; }
+a:visited { color: #333333; }
+a:active { color: darkgrey; }
+a:link { color: grey; }
+
 body {
   background-color: #f5f5f5;
 }
