@@ -22,6 +22,8 @@ puts
 #
 # the index
 
+titles = {}
+
 File.open('out/index.html', 'wb') do |f|
 
   head =
@@ -40,6 +42,8 @@ File.open('out/index.html', 'wb') do |f|
     ti = File.read(path).match(/^## ([^\n]+)/)
     ti = ti ? ti[1] : '(no ## title)'
 
+    titles[bn] = ti
+
     f.write("<li><a href=\"#{bn}.html\">#{ti}</a></li>\n")
   end
 
@@ -55,6 +59,23 @@ puts
 #
 # the posts
 
+s = StringIO.new
+#s << "<div class=\"separator\"></div>\n"
+s << "<div class=\"links\">\n"
+s << "<span class=\"link\">"
+s << "<a href=\"index.html\">Index</a>"
+s << "</span>\n"
+posts.each do |path|
+  bn = File.basename(path, '.md')
+  s << "<span class=\"sep\">"
+  s << "<span class=\"link\">"
+  s << "<a href=\"#{bn}.html\">#{titles[bn]}</a>"
+  s << "</span>\n"
+end
+s << "<div>\n"
+  #
+links = s.string
+
 posts.each do |path|
 
   bn = File.basename(path, '.md')
@@ -67,8 +88,10 @@ posts.each do |path|
       .gsub('$TITLE', bn)
 
   File.open(out, 'wb') do |f|
+
     f.write(head)
     f.write(md)
+    f.write(links)
     f.write(foot)
   end
 
