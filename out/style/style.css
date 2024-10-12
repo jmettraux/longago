@@ -49,32 +49,20 @@ img {
   width: 100%;
   display: inline-block;
   border: 3px solid black;
-  /*
-  margin-top: 0.49em;
-  */
 }
 
 p:last-of-type {
   margin-bottom: 4.2em;
 }
 
-/*
 ul {
-  list-style: none;
+  list-style: disc;
+  padding: 0 1.4em;
+}
+ul li::marker {
+  font-size: 120%;
 }
 li {
   line-height: 1.4em;
 }
-ul li::before {
-  content: "";
-  background-image: url(../images/black_stone_small.png);
-  background-size: contain;
-  display: inline-block;
-  width: 0.7em;
-  height: 0.7em;
-  position: relative;
-  top: 0.1rem;
-  margin-right: 0.2rem;
-}
-*/
 
