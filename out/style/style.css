@@ -32,14 +32,21 @@ body {
   }
 }
 
-h2 {
-  font-size: 290%;
-  margin-top: 2em;
-  margin-bottom: 2em;
+h2, h3 {
   font-family: "EB Garamond", serif;
   font-optical-sizing: auto;
   font-weight: 490;
   font-style: normal;
+}
+h2 {
+  font-size: 290%;
+  margin-top: 2em;
+  margin-bottom: 2em;
+}
+h3 {
+  font-size: 200%;
+  margin-top: 2em;
+  margin-bottom: 1em;
 }
 
 p {
