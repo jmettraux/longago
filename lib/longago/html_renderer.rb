@@ -19,11 +19,13 @@ module Longago
 
       s = StringIO.new
 
-      s << "<h#{level}>"
+      s << "<h#{level}"
+      s << ' id="' << neuter_as_id(text) << '"' if level > 1
+      s << '>'
       if level == 2
         s << "<a href=\"index.html\">"
         s << text
-        s << "</a>"
+        s << '</a>'
       else
         s << text
       end
@@ -89,6 +91,11 @@ module Longago
     def fnote_prefix
 
       @footnote_prefix || '19700101'
+    end
+
+    def neuter_as_id(s)
+
+      s.strip.gsub(/[^a-zA-Z0-9_]/, '_')
     end
   end
 end
