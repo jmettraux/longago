@@ -67,9 +67,10 @@ s << "<a href=\"index.html\">Index</a>"
 s << "</span>\n"
 posts.each do |path|
   bn = File.basename(path, '.md')
+  t = titles[bn].gsub(/\s*Lesson\s+/, '')
   s << "<span class=\"sep\">"
   s << "<span class=\"link\">"
-  s << "<a href=\"#{bn}.html\">#{titles[bn]}</a>"
+  s << "<a href=\"#{bn}.html\">#{t}</a>"
   s << "</span>\n"
 end
 s << "<div>\n"
