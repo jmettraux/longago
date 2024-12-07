@@ -2,7 +2,12 @@ GEM
   remote: https://rubygems.org/
   specs:
     colorato (1.0.0)
+    ffi (1.17.0)
+    logger (1.6.2)
     redcarpet (3.6.0)
+    ruby-vips (2.2.2)
+      ffi (~> 1.12)
+      logger
     webrick (1.8.2)
 
 PLATFORMS
@@ -12,6 +17,7 @@ PLATFORMS
 DEPENDENCIES
   colorato
   redcarpet
+  ruby-vips
   webrick
 
 BUNDLED WITH
