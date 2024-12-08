@@ -4,15 +4,15 @@
 
 require 'ruby-vips'
 
-files = []
-dry = false
+$files = []
+$dry = false
 $vrb = false
   #
 ARGV.each do |a|
   if File.file?(a)
-    files << a
+    $files << a
   elsif a == '--dry' || a == '-d'
-    dry = true
+    $dry = true
   elsif a == '--verbose' || a == '-v'
     $vrb = true
   else
@@ -65,7 +65,7 @@ def echo(*ss)
   puts ss if $vrb
 end
 
-files.each do |path|
+$files.each do |path|
 
   img = Vips::Image.new_from_file(path)
   echo "#{path} #{img.inspect}"
@@ -86,7 +86,7 @@ files.each do |path|
   else
     puts "trimmed #{path}."
     #img1.write_to_file('tmp.jpg', Q: 85)
-    img1.write_to_file(path)
+    img1.write_to_file(path) unless $dry
   end
 end
 
