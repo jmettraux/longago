@@ -62,49 +62,36 @@ def color_to_s(pt)
   r, g, b = pt.map(&:to_i)
   "r%3d g%3d b%3d  m%3d" % [ r, g, b, m ]
 end
+
 def pt_to_s(xy)
   "[ x %4d y %4d ]" % xy
 end
 
-  # image = image.crop(left, top, width, height)
-  #
-def crop_top(img)
-  xy = [ img.width / 2, 0 ]
-  c = img.getpoint(*xy)
-  echo { ". crop_top ?        #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  return img if ! black?(c)
-  echo { "crop_top because    #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  img.crop(0, 1, img.width, img.height - 1)
-end
-def crop_left(img)
-  xy = [ 0, img.height / 2 ]
-  c = img.getpoint(*xy)
-  echo { ". crop_left ?       #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  return img if ! black?(c)
-  echo { "crop_left because   #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  img.crop(1, 0, img.width - 1, img.height)
-end
-def crop_right(img)
-  xy = [ img.width - 1, img.height / 2 ]
-  c = img.getpoint(*xy)
-  echo { ". crop_right ?      #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  return img if ! black?(c)
-  echo { "crop_right because  #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  img.crop(0, 0, img.width - 1, img.height)
-end
-def crop_bottom(img)
-  xy = [ img.width / 2, img.height - 1 ]
-  c = img.getpoint(*xy)
-  echo { ". crop_bottom ?     #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  return img if ! black?(c)
-  echo { "crop_bottom because #{pt_to_s(xy)}  #{color_to_s(c)}" }
-  img.crop(0, 0, img.width, img.height - 1)
-end
+CROPS = [
+  [ :top,
+    lambda { |img| [ img.width / 2, 0 ] },
+    lambda { |img| [ 0, 1, img.width, img.height - 1 ] } ],
+  [ :left,
+    lambda { |img| [ 0, img.height / 2 ] },
+    lambda { |img| [ 1, 0, img.width - 1, img.height ] } ],
+  [ :right,
+    lambda { |img| [ img.width - 1, img.height / 2 ] },
+    lambda { |img| [ 0, 0, img.width - 1, img.height ] } ],
+  [ :bottom,
+    lambda { |img| [ img.width / 2, img.height - 1 ] },
+    lambda { |img| [ 0, 0, img.width, img.height - 1 ] } ] ]
+
 def crop(img)
-  img = crop_top(img)
-  img = crop_left(img)
-  img = crop_right(img)
-  img = crop_bottom(img)
+
+  CROPS.each do |n, xy, xywh|
+    xy = xy.call(img)
+    c = img.getpoint(*xy)
+    echo { ". crop_#{n} ?     #{pt_to_s(xy)}  #{color_to_s(c)}" }
+    next if ! black?(c)
+    echo { "crop_#{n} because #{pt_to_s(xy)}  #{color_to_s(c)}" }
+    img = img.crop(*xywh.call(img))
+  end
+
   img
 end
 
