@@ -68,16 +68,16 @@ def pt_to_s(xy)
 end
 
 CROPS = [
-  [ :top,
+  [ 'top   ',
     lambda { |img| [ img.width / 2, 0 ] },
     lambda { |img| [ 0, 1, img.width, img.height - 1 ] } ],
-  [ :left,
+  [ 'left  ',
     lambda { |img| [ 0, img.height / 2 ] },
     lambda { |img| [ 1, 0, img.width - 1, img.height ] } ],
-  [ :right,
+  [ 'right ',
     lambda { |img| [ img.width - 1, img.height / 2 ] },
     lambda { |img| [ 0, 0, img.width - 1, img.height ] } ],
-  [ :bottom,
+  [ 'bottom',
     lambda { |img| [ img.width / 2, img.height - 1 ] },
     lambda { |img| [ 0, 0, img.width, img.height - 1 ] } ] ]
 
@@ -123,7 +123,8 @@ $files.each do |path|
     puts "not writing #{path}, already trimmed."
   else
     echo { "w#{img0.width} h#{img0.height} -> w#{img.width} h#{img.height}" }
-    img1.write_to_file(path, opts) unless $dry
+    #img1.write_to_file(path, opts) unless $dry
+    img1.write_to_file(path) unless $dry
     puts "trimmed #{path}."
   end
 end
