@@ -35,7 +35,10 @@ module Longago
     def link(link, title, content)
 
       cla = []
-      cla << 'out' if link.match?(/^https:\/\/www\.youtube\.com\//)
+      cla << 'out' \
+        if (
+          link.match?(/^https:\/\/www\.youtube\.com\//) ||
+          link.match?(/^https:\/\/online-go\.com\//))
 
       ats = []
       ats << "class=#{cla.join(' ').inspect}" if cla.any?

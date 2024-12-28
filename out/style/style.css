@@ -88,7 +88,11 @@ li {
   font-size: 84%;
 }
 .sep::before {
+  /*
   content: "✦ ";
+  content: "◯  ";
+  */
+  content: "· ";
 }
 .link {
 }
