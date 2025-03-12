@@ -97,3 +97,12 @@ li {
 .link {
 }
 
+blockquote {
+  padding-left: 0.7em;
+  border-left: 1px solid grey;
+  font-style: italic;
+}
+blockquote p {
+  margin-bottom: 0 !important;
+}
+
