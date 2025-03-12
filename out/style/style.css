@@ -105,4 +105,7 @@ blockquote {
 blockquote p {
   margin-bottom: 0 !important;
 }
+blockquote a {
+  text-decoration: underline;
+}
 
